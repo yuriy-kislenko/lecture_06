@@ -49,3 +49,14 @@ yarn test
 ```bash
 yarn lint
 ```
+
+##Workflow:
+
+* Fork the project
+* Implement required functionality *(src/arrayMethods.js)*
+* Run lint
+* Run the tests
+
+__ONLY if all tests passed and the code has no eslint errors__
+
+Open pull request from __your__ repository to __FED-PRO-04-18/lecture_06__
