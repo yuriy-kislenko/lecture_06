@@ -92,4 +92,23 @@ describe('Array methods:', function () {
       }).toThrowError(TypeError);
     });
   });
+
+  describe('.filter(callback)', function () {
+    it('executes callback for each element of array', function () {
+      window.filter(numbersArray, jestCallback);
+      expect(jestCallback).toHaveBeenCalledTimes(numbersArray.length);
+    });
+
+    it('returns new array with filtered values', function () {
+      var expectedResult = mixedArray.filter(callbacks.isTypeOfNumber);
+      var actualResult = window.filter(mixedArray, callbacks.isTypeOfNumber);
+      expect(actualResult).toEqual(expectedResult);
+    });
+
+    it('throws type error exception in case no function passed', function () {
+      expect(function () {
+        window.filter([]);
+      }).toThrowError(TypeError);
+    });
+  });
 });
