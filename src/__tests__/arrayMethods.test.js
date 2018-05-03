@@ -47,6 +47,13 @@ describe('Array methods:', function () {
     });
   };
 
+  var itPassesElementIndexAndArrayIntoCallback = function (method) {
+    var arr = [1];
+    var callback = jest.fn();
+    method(arr, callback);
+    expect(callback).toHaveBeenCalledWith(arr[0], 0, arr);
+  };
+
   describe('.every(array, callback)', function () {
     it('returns true if all elements satisfy passed condition', function () {
       expect(window.every(numbersArray, callbacks.isTypeOfNumber)).toBe(true);
@@ -57,7 +64,10 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.every);
+
     itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.every);
+
+    itPassesElementIndexAndArrayIntoCallback(window.every);
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
@@ -79,7 +89,10 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.some);
+
     itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.some);
+
+    itPassesElementIndexAndArrayIntoCallback(window.some);
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
@@ -98,7 +111,10 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.forEach);
+
     itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.forEach);
+
+    itPassesElementIndexAndArrayIntoCallback(window.forEach);
   });
 
   describe('.filter(array, callback)', function () {
@@ -114,7 +130,10 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.filter);
+
     itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.filter);
+
+    itPassesElementIndexAndArrayIntoCallback(window.filter);
   });
 
   describe('.map(array, callback)', function () {
@@ -131,6 +150,9 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.map);
+
     itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.map);
+
+    itPassesElementIndexAndArrayIntoCallback(window.map);
   });
 });
