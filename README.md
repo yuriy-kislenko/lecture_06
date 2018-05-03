@@ -1,6 +1,6 @@
 # Lecture 6 task
 
-####Prerequisites:
+#### Prerequisites:
 __Windows users only:__
 Download and install [Git Bash](https://git-scm.com/download/win)
 
@@ -19,7 +19,7 @@ __Install yarn:__
 npm install -g yarn
 ```
 
-####Installing:
+#### Installing:
 __Open terminal:__
 
 ```bash
@@ -30,7 +30,7 @@ cd /path/to/lecture_06
 yarn install
 ```
 
-####Run the server
+#### Run the server
 
 ```bash
 yarn start
@@ -38,19 +38,19 @@ yarn start
 
 __Open [http://localhost:3000](http://localhost:3000)__
 
-####Run the tests
+#### Run the tests
 
 ```bash
 yarn test
 ```
 
-####Run eslint:
+#### Run eslint:
 
 ```bash
 yarn lint
 ```
 
-##Workflow:
+## Workflow:
 
 * Fork the project
 * Implement required functionality *(src/arrayMethods.js)*
