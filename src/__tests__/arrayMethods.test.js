@@ -80,7 +80,7 @@ describe('Array methods:', function () {
     });
   });
 
-  describe('.forEach(callback)', function () {
+  describe('.forEach(array, callback)', function () {
     it('executes callback for each element of array', function () {
       window.forEach(numbersArray, jestCallback);
       expect(jestCallback).toHaveBeenCalledTimes(numbersArray.length);
@@ -93,7 +93,7 @@ describe('Array methods:', function () {
     });
   });
 
-  describe('.filter(callback)', function () {
+  describe('.filter(array, callback)', function () {
     it('executes callback for each element of array', function () {
       window.filter(numbersArray, jestCallback);
       expect(jestCallback).toHaveBeenCalledTimes(numbersArray.length);
@@ -108,6 +108,26 @@ describe('Array methods:', function () {
     it('throws type error exception in case no function passed', function () {
       expect(function () {
         window.filter([]);
+      }).toThrowError(TypeError);
+    });
+  });
+
+  describe('.map(array, callback)', function () {
+    it('executes callback for each element of array', function () {
+      window.map(numbersArray, jestCallback);
+      expect(jestCallback).toHaveBeenCalledTimes(numbersArray.length);
+    });
+
+    it('returns new array with mapped values', function () {
+      var expectedResult = mixedArray.map(callbacks.isTypeOfString);
+      var actualResult = window.map(mixedArray, callbacks.isTypeOfString);
+
+      expect(actualResult).toEqual(expectedResult);
+    });
+
+    it('throws type error exception in case no function passed', function () {
+      expect(function () {
+        window.map([]);
       }).toThrowError(TypeError);
     });
   });
