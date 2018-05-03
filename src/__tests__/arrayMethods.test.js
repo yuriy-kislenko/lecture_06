@@ -30,6 +30,14 @@ describe('Array methods:', function () {
     }
   });
 
+  var itThrowsTypeErrorIfCallbackIsNotAFunction = function (method) {
+    it('throws type error exception in case callback is not a function', function () {
+      expect(function () {
+        method([]);
+      }).toThrowError(TypeError);
+    });
+  };
+
   describe('.every(array, callback)', function () {
     it('returns true if all elements satisfy passed condition', function () {
       expect(window.every(numbersArray, callbacks.isTypeOfNumber)).toBe(true);
@@ -39,11 +47,7 @@ describe('Array methods:', function () {
       expect(window.every(mixedArray, callbacks.isTypeOfNumber)).toBe(false);
     });
 
-    it('throws type error exception in case no function passed', function () {
-      expect(function () {
-        window.every([]);
-      }).toThrowError(TypeError);
-    });
+    itThrowsTypeErrorIfCallbackIsNotAFunction(window.every);
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
@@ -64,11 +68,7 @@ describe('Array methods:', function () {
       expect(window.some(numbersArray, callbacks.isTypeOfString)).toBe(false);
     });
 
-    it('throws type error exception in case no function passed', function () {
-      expect(function () {
-        window.some([]);
-      }).toThrowError(TypeError);
-    });
+    itThrowsTypeErrorIfCallbackIsNotAFunction(window.some);
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
@@ -86,11 +86,7 @@ describe('Array methods:', function () {
       expect(jestCallback).toHaveBeenCalledTimes(numbersArray.length);
     });
 
-    it('throws type error exception in case no function passed', function () {
-      expect(function () {
-        window.forEach([]);
-      }).toThrowError(TypeError);
-    });
+    itThrowsTypeErrorIfCallbackIsNotAFunction(window.forEach);
   });
 
   describe('.filter(array, callback)', function () {
@@ -105,11 +101,7 @@ describe('Array methods:', function () {
       expect(actualResult).toEqual(expectedResult);
     });
 
-    it('throws type error exception in case no function passed', function () {
-      expect(function () {
-        window.filter([]);
-      }).toThrowError(TypeError);
-    });
+    itThrowsTypeErrorIfCallbackIsNotAFunction(window.filter);
   });
 
   describe('.map(array, callback)', function () {
@@ -125,10 +117,6 @@ describe('Array methods:', function () {
       expect(actualResult).toEqual(expectedResult);
     });
 
-    it('throws type error exception in case no function passed', function () {
-      expect(function () {
-        window.map([]);
-      }).toThrowError(TypeError);
-    });
+    itThrowsTypeErrorIfCallbackIsNotAFunction(window.map);
   });
 });
