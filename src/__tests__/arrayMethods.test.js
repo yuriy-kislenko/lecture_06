@@ -33,7 +33,7 @@ describe('Array methods:', function () {
   var itThrowsTypeErrorIfCallbackIsNotAFunction = function (method) {
     it('throws type error exception in case callback is not a function', function () {
       expect(function () {
-        method([]);
+        method([1]);
       }).toThrowError(TypeError);
     });
   };
@@ -48,10 +48,12 @@ describe('Array methods:', function () {
   };
 
   var itPassesElementIndexAndArrayIntoCallback = function (method) {
-    var arr = [1];
-    var callback = jest.fn();
-    method(arr, callback);
-    expect(callback).toHaveBeenCalledWith(arr[0], 0, arr);
+    it('calls callback with (element, index, array)', function () {
+      var arr = [1];
+      var callback = jest.fn();
+      method(arr, callback);
+      expect(callback).toHaveBeenCalledWith(arr[0], 0, arr);
+    });
   };
 
   describe('.every(array, callback)', function () {
