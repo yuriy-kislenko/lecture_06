@@ -1,6 +1,6 @@
 # Lecture 6 task
 
-###Prerequisites:
+####Prerequisites:
 __Windows users only:__
 Download and install [Git Bash](https://git-scm.com/download/win)
 
@@ -19,7 +19,7 @@ __Install yarn:__
 npm install -g yarn
 ```
 
-###Project setup:
+####Installing:
 __Open terminal:__
 
 ```bash
@@ -28,4 +28,24 @@ cd /path/to/lecture_06
 
 ```bash
 yarn install
+```
+
+####Run the server
+
+```bash
+yarn start
+```
+
+__Open [http://localhost:3000](http://localhost:3000)__
+
+####Run the tests
+
+```bash
+yarn test
+```
+
+####Run eslint:
+
+```bash
+yarn lint
 ```
