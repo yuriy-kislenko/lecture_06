@@ -1,0 +1,9 @@
+{
+  "name": "lecture_06",
+  "version": "1.0.0",
+  "description": "Array iterational methods",
+  "main": "index.js",
+  "repository": "git@github.com:FED-PRO-04-18/lecture_06.git",
+  "author": "Ihor Bondar <ihor.bondar92@gmail.com>",
+  "license": "MIT"
+}
