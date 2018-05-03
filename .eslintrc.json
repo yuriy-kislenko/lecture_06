@@ -6,5 +6,9 @@
   "extends": [
     "eslint:recommended",
     "eslint-config-es5"
-  ]
+  ],
+  "rules": {
+    "func-names": "off",
+    "space-before-function-paren": "off"
+  }
 }
