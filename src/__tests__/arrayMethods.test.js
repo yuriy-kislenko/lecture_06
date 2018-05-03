@@ -4,13 +4,13 @@ describe('Array methods:', function () {
   var mixedArray = null;
   var jestCallback = null;
 
-
-  var isTypeOfString = function (element) {
-    return typeof element === 'string';
-  };
-
-  var isTypeOfNumber = function (element) {
-    return typeof element === 'number';
+  var callbacks = {
+    isTypeOfString: function (element) {
+      return typeof element === 'string';
+    },
+    isTypeOfNumber: function (element) {
+      return typeof element === 'number';
+    },
   };
 
   beforeEach(function () {
@@ -32,11 +32,11 @@ describe('Array methods:', function () {
 
   describe('.every(array, callback)', function () {
     it('returns true if all elements satisfy passed condition', function () {
-      expect(window.every(numbersArray, isTypeOfNumber)).toBe(true);
+      expect(window.every(numbersArray, callbacks.isTypeOfNumber)).toBe(true);
     });
 
     it('returns false if at least one element doe not satisfy passed condition', function () {
-      expect(window.every(mixedArray, isTypeOfNumber)).toBe(false);
+      expect(window.every(mixedArray, callbacks.isTypeOfNumber)).toBe(false);
     });
 
     it('throws type error exception in case no function passed', function () {
@@ -47,24 +47,21 @@ describe('Array methods:', function () {
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
-      var iterationsCount = 0;
+      jest.spyOn(callbacks, 'isTypeOfNumber');
 
-      window.every(invalidArray, function (element) {
-        iterationsCount++;
-        return isTypeOfNumber(element);
-      });
+      window.every(invalidArray, callbacks.isTypeOfNumber);
 
-      expect(iterationsCount).toBe(5);
+      expect(callbacks.isTypeOfNumber).toHaveBeenCalledTimes(5);
     });
   });
 
   describe('.some(array, callback)', function () {
     it('returns true if at least one element satisfies passed condition', function () {
-      expect(window.some(mixedArray, isTypeOfNumber)).toBe(true);
+      expect(window.some(mixedArray, callbacks.isTypeOfNumber)).toBe(true);
     });
 
     it('returns false if all elements do not satisfy passed condition', function () {
-      expect(window.some(numbersArray, isTypeOfString())).toBe(false);
+      expect(window.some(numbersArray, callbacks.isTypeOfString)).toBe(false);
     });
 
     it('throws type error exception in case no function passed', function () {
@@ -75,14 +72,11 @@ describe('Array methods:', function () {
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
-      var iterationsCount = 0;
+      jest.spyOn(callbacks, 'isTypeOfString');
 
-      window.some(invalidArray, function (element) {
-        iterationsCount++;
-        return isTypeOfString(element);
-      });
+      window.some(invalidArray, callbacks.isTypeOfString);
 
-      expect(iterationsCount).toBe(5);
+      expect(callbacks.isTypeOfString).toHaveBeenCalledTimes(5);
     });
   });
 
