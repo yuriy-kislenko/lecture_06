@@ -2,6 +2,7 @@ describe('Array methods:', function () {
   var ELEMENTS_COUNT = 10;
   var numbersArray = null;
   var mixedArray = null;
+  var jestCallback = null;
 
 
   var isTypeOfString = function (element) {
@@ -15,6 +16,7 @@ describe('Array methods:', function () {
   beforeEach(function () {
     numbersArray = [];
     mixedArray = [];
+    jestCallback = jest.fn();
 
     var element;
     for (var i = 0; i < ELEMENTS_COUNT; i++) {
@@ -81,6 +83,19 @@ describe('Array methods:', function () {
       });
 
       expect(iterationsCount).toBe(5);
+    });
+  });
+
+  describe('.forEach(callback)', function () {
+    it('executes callback for each element of array', function () {
+      window.forEach(numbersArray, jestCallback);
+      expect(jestCallback).toHaveBeenCalledTimes(numbersArray.length);
+    });
+
+    it('throws type error exception in case no function passed', function () {
+      expect(function () {
+        window.forEach([]);
+      }).toThrowError(TypeError);
     });
   });
 });
