@@ -42,6 +42,18 @@ describe('Array methods:', function () {
         window.every([]);
       }).toThrowError(TypeError);
     });
+
+    it('it stops a loop at first failed check', function () {
+      var invalidArray = [1, 2, 3, 4, '20', 30, 40];
+      var iterationsCount = 0;
+
+      window.every(invalidArray, function (element) {
+        iterationsCount++;
+        return isTypeOfNumber(element);
+      });
+
+      expect(iterationsCount).toBe(5);
+    });
   });
 
   describe('.some(array, callback)', function () {
@@ -57,6 +69,18 @@ describe('Array methods:', function () {
       expect(function () {
         window.some([]);
       }).toThrowError(TypeError);
+    });
+
+    it('it stops a loop at first failed check', function () {
+      var invalidArray = [1, 2, 3, 4, '20', 30, 40];
+      var iterationsCount = 0;
+
+      window.some(invalidArray, function (element) {
+        iterationsCount++;
+        return isTypeOfString(element);
+      });
+
+      expect(iterationsCount).toBe(5);
     });
   });
 });
