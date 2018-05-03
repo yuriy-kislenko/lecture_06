@@ -43,4 +43,20 @@ describe('Array methods:', function () {
       }).toThrowError(TypeError);
     });
   });
+
+  describe('.some(array, callback)', function () {
+    it('returns true if at least one element satisfies passed condition', function () {
+      expect(window.some(mixedArray, isTypeOfNumber)).toBe(true);
+    });
+
+    it('returns false if all elements do not satisfy passed condition', function () {
+      expect(window.some(numbersArray, isTypeOfString())).toBe(false);
+    });
+
+    it('throws type error exception in case no function passed', function () {
+      expect(function () {
+        window.some([]);
+      }).toThrowError(TypeError);
+    });
+  });
 });
