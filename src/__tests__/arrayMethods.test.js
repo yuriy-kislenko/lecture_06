@@ -38,6 +38,15 @@ describe('Array methods:', function () {
     });
   };
 
+  var itThrowsTypeErrorIfFirstArgumentIsNotAnArray = function (method) {
+    it('throws type error exception in case the first argument is not an array', function () {
+      expect(function () {
+        method(null, function () {
+        });
+      }).toThrowError(TypeError);
+    });
+  };
+
   describe('.every(array, callback)', function () {
     it('returns true if all elements satisfy passed condition', function () {
       expect(window.every(numbersArray, callbacks.isTypeOfNumber)).toBe(true);
@@ -48,6 +57,7 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.every);
+    itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.every);
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
@@ -69,6 +79,7 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.some);
+    itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.some);
 
     it('it stops a loop at first failed check', function () {
       var invalidArray = [1, 2, 3, 4, '20', 30, 40];
@@ -87,6 +98,7 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.forEach);
+    itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.forEach);
   });
 
   describe('.filter(array, callback)', function () {
@@ -102,6 +114,7 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.filter);
+    itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.filter);
   });
 
   describe('.map(array, callback)', function () {
@@ -118,5 +131,6 @@ describe('Array methods:', function () {
     });
 
     itThrowsTypeErrorIfCallbackIsNotAFunction(window.map);
+    itThrowsTypeErrorIfFirstArgumentIsNotAnArray(window.map);
   });
 });
